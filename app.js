@@ -28,7 +28,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api", require("./routes"));
+app.use("/", require("./routes"));
 
 // Error catching endware.
 app.use((err, req, res, next) => {
