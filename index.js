@@ -25,9 +25,7 @@ app.use((req, res, next) => {
 
 // Rutas
 const indexRoutes = require("./routes/index");
-const homeRoutes = require("./routes/home");
 app.use("/", indexRoutes);
-app.use("/", homeRoutes);
 
 // Conexión a la base de datos
 const dbConnect = require("./db");
