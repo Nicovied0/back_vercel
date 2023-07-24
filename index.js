@@ -4,11 +4,13 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 const app = express();
-const port = 3001;
+const PORT = 3001;
 
+app.use(express.json());
+
+// Configuración de CORS para permitir solicitudes desde "http://localhost:4200"
 app.use(cors()); //error de origen cruzado
 app.use(express.json()); //Manejar data .json
-
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*"); // or `http://localhost:${FRONT}`// update to match the domain you will make the request from
@@ -21,31 +23,22 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-  console.log("Estoy en: ", req.url);
-  res.send(`soy ${req.url}`);
-});
+// Rutas
+const indexRoutes = require("./routes/index");
+const homeRoutes = require("./routes/home");
+app.use("/", indexRoutes);
+app.use("/", homeRoutes);
 
-app.get("/home", (req, res) => {
-  console.log("Estoy en: ", req.url);
-  res.send("soy home");
-});
-
+// Conexión a la base de datos
 const dbConnect = require("./db");
-
-
-// app.listen(port, () => {
-//   console.log(`Escuchando en puerto ${port}`);
-// });
 
 dbConnect().then(
   (res) => {
-
-    app.listen(port, () => {
-      console.log(`Escuchando en puerto ${port}`);
+    app.listen(PORT, () => {
+      console.log("Successfully connected");
+      console.log(`http://localhost:${PORT}`);
     });
   },
-
   (error) => {
     console.log("Connection error", error);
   }
