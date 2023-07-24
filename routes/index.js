@@ -1,29 +1,19 @@
+const fs = require("fs");
 const express = require("express");
 const router = express.Router();
 
-const vehiclesRoutes = require("./vehicles");
-// const authRoutes = require("./auth");
-// const uploadDataRoutes = require("./uploadData");
-// const uploadImageRoutes = require("./uploadFile");
-// const usersRoutes = require("./users");
-// const postRoutes = require("./post");
-// const emailRoutes = require("./email");
+const PATH_ROUTES = __dirname;
 
-router.use("/vehicles", vehiclesRoutes);
-// router.use("/auth", authRoutes);
-// router.use("/users", usersRoutes);
-// router.use("/upload", uploadDataRoutes);
-// router.use("/post", postRoutes);
-// router.use("/uploadImage", uploadImageRoutes);
-// router.use("/email", emailRoutes);
-router.get("/vehicles", async (req, res) => {
-  try {
-    const todos = await Vehicles.find();
-    console.log("Se llamó a la ruta /vehicles");
-    res.json(todos);
-  } catch (error) {
-    console.error("Error al obtener los vehículos", error);
-    res.status(500).json({ error: "Error al obtener los vehículos" });
+const removeExtension = (name) => {
+  return name.split(".").shift();
+};
+
+fs.readdirSync(PATH_ROUTES).map((file) => {
+  const name = removeExtension(file);
+
+  if (name !== "index") {
+    router.use(`/${name}`, require(`./${file}`));
   }
 });
+
 module.exports = router;
