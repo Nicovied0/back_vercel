@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 const env = require("dotenv").config();
 
-const DB_URI = `mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0.gfac6fk.mongodb.net/${process.env.NAME_DB}?retryWrites=true&w=majority`;
+// const DB_URI = `mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0.gfac6fk.mongodb.net/${process.env.NAME_DB}?retryWrites=true&w=majority`;
+const DB_URI = `mongodb+srv://adminBBVV:TPryUkoJef4Rskbu@cluster0.gfac6fk.mongodb.net/app_bomberos?retryWrites=true&w=majority`;
+
 const connectDB = async () => {
   try {
     await mongoose.connect(DB_URI, {
