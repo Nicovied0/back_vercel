@@ -4,8 +4,11 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 const app = express();
-const port = 3001;
+const PORT = process.env.PORT || 3001;
 
+app.use(express.json());
+
+// Configuración de CORS para permitir solicitudes desde "http://localhost:4200"
 app.use(cors()); //error de origen cruzado
 app.use(express.json()); //Manejar data .json
 
@@ -21,28 +24,19 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-  console.log("Estoy en: ", req.url);
-  res.send(`soy ${req.url}`);
-});
+// Rutas
+const routes = require("./routes/index");
+app.use("/", routes);
 
-app.get("/home", (req, res) => {
-  console.log("Estoy en: ", req.url);
-  res.send("soy home");
-});
-
+// Conexión a la base de datos
 const dbConnect = require("./db");
-
-
-// app.listen(port, () => {
-//   console.log(`Escuchando en puerto ${port}`);
-// });
 
 dbConnect().then(
   (res) => {
 
-    app.listen(port, () => {
-      console.log(`Escuchando en puerto ${port}`);
+    app.listen(process.env.PORT, () => {
+      console.log("Successfully connected");
+      console.log(`http://localhost:${PORT}`);
     });
   },
 
