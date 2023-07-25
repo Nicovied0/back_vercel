@@ -2,21 +2,21 @@ const express = require("express");
 const router = express.Router();
 
 const vehiclesRoutes = require("./vehicles");
-// const authRoutes = require("./auth");
-// const uploadDataRoutes = require("./uploadData");
-// const uploadImageRoutes = require("./uploadFile");
-// const usersRoutes = require("./users");
+const authRoutes = require("./auth");
+const uploadDataRoutes = require("./uploadData");
+const uploadImageRoutes = require("./uploadFile");
+const usersRoutes = require("./users");
 // const postRoutes = require("./post");
-// const emailRoutes = require("./email");
+const emailRoutes = require("./email");
 const user = require("./json");
 
 router.use("/vehicles", vehiclesRoutes);
-// router.use("/auth", authRoutes);
-// router.use("/users", usersRoutes);
-// router.use("/upload", uploadDataRoutes);
+router.use("/auth", authRoutes);
+router.use("/users", usersRoutes);
+router.use("/upload", uploadDataRoutes);
 // router.use("/post", postRoutes);
-// router.use("/uploadImage", uploadImageRoutes);
-// router.use("/email", emailRoutes);
-router.use("/users", user);
+router.use("/uploadImage", uploadImageRoutes);
+router.use("/email", emailRoutes);
+router.use("/users2", user);
 
 module.exports = router;
