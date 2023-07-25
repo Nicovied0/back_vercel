@@ -21,15 +21,19 @@ const dbConnect = require("./src/config/mongo");
 const routes = require("./src/routes/index");
 app.use("/", routes);
 
-dbConnect().then(
-  (res) => {
-    // Iniciar el servidor
-    app.listen(PORT, () => {
-      console.log("Successfully connected");
-      console.log(`Servidor Express escuchando en el puerto ${PORT}`);
-    });
-  },
-  (error) => {
-    console.log("Connection error", error);
-  }
-);
+dbConnect();
+// .then(
+//   (res) => {
+//     // Iniciar el servidor
+//     app.listen(PORT, () => {
+//       console.log("Successfully connected");
+//       console.log(`Servidor Express escuchando en el puerto ${PORT}`);
+//     });
+//   },
+//   (error) => {
+//     console.log("Connection error", error);
+//   }
+// );
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
+});
