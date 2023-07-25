@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-// const vehiclesRoutes = require("./vehicles");
+const vehiclesRoutes = require("./vehicles");
 // const authRoutes = require("./auth");
 // const uploadDataRoutes = require("./uploadData");
 // const uploadImageRoutes = require("./uploadFile");
@@ -10,7 +10,7 @@ const router = express.Router();
 // const emailRoutes = require("./email");
 const user = require("./json");
 
-// router.use("/vehicles", vehiclesRoutes);
+router.use("/vehicles", vehiclesRoutes);
 // router.use("/auth", authRoutes);
 // router.use("/users", usersRoutes);
 // router.use("/upload", uploadDataRoutes);
