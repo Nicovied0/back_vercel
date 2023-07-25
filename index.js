@@ -20,33 +20,17 @@ const dbConnect = require("./src/config/mongo");
 // Importar las rutas desde la carpeta "routes"
 const routes = require("./src/routes/index");
 app.use("/", routes);
-app.use("/api", require("./src/routes"));
-// dbConnect().then(
-//   (res) => {
-//     // Iniciar el servidor
-//     app.listen(PORT, () => {
-//       console.log("Successfully connected");
-//       console.log(`Servidor Express escuchando en el puerto ${PORT}`);
-//     });
-//   },
-//   (error) => {
-//     console.log("Connection error", error);
-//   }
-// );
-// dbConnect().then(
-//   (res) => {
-//     app.listen(process.env.PORT, () => {
-//       console.log("Successfully connected");
-//       console.log(`Servidor Express escuchando en el puerto ${PORT}`);
-//     });
-//   },
+// app.use("/api", require("./src/routes"));
 
-//   (error) => {
-//     console.log("Connection error", error);
-//   }
-// );
+dbConnect().then(
+  (res) => {
+    app.listen(process.env.PORT, () => {
+      console.log("Successfully connected");
+      console.log(`Servidor Express escuchando en el puerto ${PORT}`);
+    });
+  },
 
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando en el puerto ${PORT}`);
-  // console.log(dbConnect());
-});
+  (error) => {
+    console.log("Connection error", error);
+  }
+);
