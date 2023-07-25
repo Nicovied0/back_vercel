@@ -33,20 +33,20 @@ app.use("/api", require("./src/routes"));
 //     console.log("Connection error", error);
 //   }
 // );
-dbConnect().then(
-  (res) => {
-    app.listen(process.env.PORT, () => {
-      console.log("Successfully connected");
-      console.log(`Servidor Express escuchando en el puerto ${PORT}`);
-    });
-  },
+// dbConnect().then(
+//   (res) => {
+//     app.listen(process.env.PORT, () => {
+//       console.log("Successfully connected");
+//       console.log(`Servidor Express escuchando en el puerto ${PORT}`);
+//     });
+//   },
 
-  (error) => {
-    console.log("Connection error", error);
-  }
-);
+//   (error) => {
+//     console.log("Connection error", error);
+//   }
+// );
 
-// app.listen(PORT, () => {
-//   console.log(`Servidor escuchando en el puerto ${PORT}`);
-//   console.log(dbConnect());
-// });
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
+  // console.log(dbConnect());
+});
