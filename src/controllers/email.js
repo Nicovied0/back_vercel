@@ -4,10 +4,13 @@ const nodemailer = require("nodemailer");
 const enviarCorreo = async (nombre, email, asunto, mensaje) => {
   // Configuración del transporte de correo
   const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
     service: "Gmail",
     auth: {
-      user: "briannoviedo@gmail.com", // Cambiar por tu dirección de correo
-      pass: "xgdpqqgodzcxbfhf", // Cambiar por tu contraseña
+      user: process.env.GMAIL_USER, // generated ethereal user
+      pass: process.env.GMAIL_PASSWORD, // generated ethereal password
     },
   });
 
