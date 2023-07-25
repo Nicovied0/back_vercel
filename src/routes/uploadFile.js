@@ -4,9 +4,9 @@ const cloudinary = require("cloudinary").v2;
 const uploadMiddleware = require("../middleware/uploadMiddleware");
 
 cloudinary.config({
-  cloud_name: "dnenoxgh8",
-  api_key: "517676561973372",
-  api_secret: "w96mHOp6pxaoU7EDBV6oc1kbt80",
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
 });
 
 function uploadImageToCloudinary(imageFile) {
