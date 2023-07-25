@@ -28,7 +28,21 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/", require("./routes"));
+// app.use("/", require("./routes"));
+
+app.get("/hello", (req, res) => {
+  res.send("¡Hola! Esta es una prueba exitosa de Express en Vercel.");
+});
+
+app.use((req, res) => {
+  res.status(404).send("Ruta no encontrada");
+});
+
+// Manejador de errores
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Algo salió mal.");
+});
 
 // Error catching endware.
 app.use((err, req, res, next) => {
